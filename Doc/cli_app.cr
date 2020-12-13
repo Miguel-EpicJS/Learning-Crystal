@@ -7,6 +7,9 @@ the_beatles = [
     "Ringo Starr"
 ]
 shout = false
+
+say_hi_to = ""
+
 OptionParser.parse do |parser|
     parser.banner = "Welcome to The Beatles App"
     parser.on "-v", "--version", "Show version" do
@@ -20,6 +23,9 @@ OptionParser.parse do |parser|
     parser.on "-t", "--twist", "Twist and SHOUT" do
         shout = true
     end
+    parser.on "-g NAME", "--goodbye_hello=NAME", "Say hello to whoever you want" do |name|
+        say_hi_to = name
+    end
 end
 
 members = the_beatles
@@ -30,4 +36,9 @@ puts "Group members:"
 puts "=============="
 members.each do |member|
   puts member
+end
+
+unless say_hi_to.empty?
+    puts ""
+    puts "You say goodbye, and #{the_beatles.sample} says hello to #{say_hi_to}!"
 end
