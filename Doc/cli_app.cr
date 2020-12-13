@@ -26,6 +26,17 @@ OptionParser.parse do |parser|
     parser.on "-g NAME", "--goodbye_hello=NAME", "Say hello to whoever you want" do |name|
         say_hi_to = name
     end
+    parser.missing_option do |option_flag|
+        STDERR.puts "ERROR: #{option_flag} is missing something."
+        STDERR.puts ""
+        STDERR.puts parser
+        exit(1)
+    end
+    parser.invalid_option do |option_flag|
+        STDERR.puts "ERROR: #{option_flag} is not a valid option."
+        STDERR.puts parser
+        exit(1)
+    end
 end
 
 members = the_beatles
